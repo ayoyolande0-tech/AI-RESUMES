@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ full_name }} - Lettre de motivation - HireAfrica</title>
+    <style>
+        body {font-family: Georgia, serif; max-width: 800px; margin: 60px auto; padding: 10px; line-height: 1.5; color: #1a1a1a;}
+        .watermark {
+            position: fixed;
+            bottom: -40px;
+            left: 0; right: 0;
+            text-align: center;
+            color: #33630cff;
+            font-size: 20px;
+            font-style: italic;
+            pointer-events: none;
+        }
+        .header { margin-bottom: 40px;}
+        .company-address {text-align: right; margin-bottom: 40px; color: #0c0c0cff; font-size: 14px;}
+        .letter-body {text-align: justify; font-size: 16px; line-height: 1.5;}
+        .letter-body p {margin-bottom: 20px;}
+        .signature {margin-top: 60px;}
+    </style>
+</head>
+<body>
+    <div class="watermark">AI RESUME BUILDER - Version gratuite</div>
+
+    <div class="header">
+        {{ full_name }}<br>
+        {{ email }}<br>
+        {{ phone }}<br>
+        {{ date }}  
+    </div>
+
+    <div class="company-address">
+        <strong>{{ company }}</strong><br>
+        À l'attention du Responsable du Recrutement<br>
+        {{ company }}<br>
+        
+    </div>
+
+      
+    <p style="text-align: center;"><strong>Poste :</strong> {{ job_title }}</p>
+
+    <div class="letter-body">
+        {{ cover_letter | replace("\n", "<br>") | safe }}
+    </div>
+
+    
+
+</body>
+</html>
