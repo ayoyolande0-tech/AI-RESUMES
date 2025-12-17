@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ full_name }} - Curriculum Vitae</title>
+    <style>
+        body { font-family: "Segoe UI", Arial, sans-serif; margin: 50px; color: #2d2d2d; line-height: 1.5; }
+        .header { text-align: center; margin-bottom: 40px; color: #050505ff; }
+        h2 { color: #070606ff; border-bottom: 2px solid #eee; padding-bottom: 8px; }
+        .section { margin: 25px 0; }
+        ul { padding-left: 20px; }
+        .skills { columns: 3; column-gap: 30px; }
+        .skills li { margin: 8px 0; background: #f8f9fa; padding: 6px 12px; border-radius: 20px; font-size: 14px; }
+        .watermark {
+            position: fixed;
+            bottom: 40px;
+            left: 0; right: 0;
+            text-align: center;
+            color: #cccccc;
+            font-size: 18px;
+            font-style: italic;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>{{ full_name }}</h1>
+        <p>{{ email }} • {{ phone }} {{ linkedInProfile }} </p>
+    </div>
+
+    <!-- EXPÉRIENCES -->
+    {% if experiences %}
+    <h2>Expériences Professionnelles</h2>
+    {% for exp in experiences %}
+    <div class="section">
+        <strong>{{ exp.job_title }}</strong> — {{ exp.company }}
+        <i position="left">{{ exp.start_date }} - {{ exp.end_date or "Présent" }}</i>
+        <ul>
+            <li>{{ exp.description }}</li>
+        </ul>
+    </div>
+    {% endfor %}
+    {% endi f %}
+
+    <!-- ÉDUCATION -->
+    {% if education %}
+    <h2>Formation</h2>
+    {% for edu in education %}
+    <div class="section">
+        <strong>{{ edu.diplome }}</strong><br>
+        {{ edu.etablissement }}<br>
+        <i position= "left">{{ edu.start_date }} – {{ edu.end_date }}</i>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- PROJETS -->
+    {% if projects %}
+    <h2>Projets</h2>
+    {% for proj in projects %}
+    <div class="section">
+        • {{ proj.description }} <i position= "left">({{ proj.annee }})</i>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- COMPÉTENCES -->
+    {% if skills %}
+    <h2>Compétences</h2>
+    <ul class="skills">
+        {% for skill in skills %}
+        <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="watermark">AI RESUMER BUILDER FOR HireAfrica - Version gratuite</div>
+</body>
+</html>

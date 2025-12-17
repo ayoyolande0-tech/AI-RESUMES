@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>{{ full_name }} - CV HireAfrica</title>
+    <style>
+        body { font-family: "Segoe UI", sans-serif; margin: 60px; display: grid; grid-template-columns: 1.5fr 3fr; gap: 40px; }
+        h1 { font-size: 32px; font-weight: bold; margin: 0; }
+        .contact { font-size: 15px; color: #555; margin-top: 10px; }
+        .sidebar { background: #f8f8f8; padding: 30px; border-radius: 8px; }
+        .sidebar h3 { font-size: 16px; font-weight: bold; margin: 25px 0 10px; border-bottom: 2px solid #000; padding-bottom: 5px; }
+        .main h2 { font-size: 18px; font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 8px; margin: 30px 0 15px; }
+        .date { float: right; color: #666; }
+        .watermark { position: fixed; bottom: 30px; left: 0; right: 0; text-align: center; color: #ccc; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h1>{{ full_name }}</h1>
+        <div class="contact">
+            {{ email }}<br>
+            {{ phone }}
+        </div>
+
+        {% if languages %}
+        <h3>Langues</h3>
+        {% for lang in languages %}
+        <div>• {{ lang.name }} ({{ lang.level }})</div>
+        {% endfor %}
+        {% endif %}
+
+        {% if skills %}
+        <h3>Compétences</h3>
+        {% for skill in skills %}
+        <div>• {{ skill }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="main">
+        <h2>Expériences professionnelles</h2>
+        {% for exp in experiences %}
+        <div style="margin-bottom: 20px;">
+            <strong>{{ exp.job_title }} chez {{ exp.company }}</strong>
+            <span class="date">{{ exp.start_date }} - {{ exp.end_date or "Présent" }}</span>
+            <p style="margin-top: 8px;">{{ exp.description }}</p>
+        </div>
+        {% endfor %}
+
+        {% if education %}
+        <h2>Formation</h2>
+        {% for edu in education %}
+        <div><strong>{{ edu.diplome }}</strong> — {{ edu.etablissement }}</div>
+        {% endfor %}
+        {% endif %}
+
+        {% if projects %}
+        <h2>Projets</h2>
+        {% for proj in projects %}
+        <div>• {{ proj.description }} ({{ proj.annee }})</div>
+        {% endfor %}
+        {% endif %}
+
+        {% if certifications %}
+        <h2>Certifications</h2>
+        {% for cert in certifications %}
+        <div>• {{ cert.name }} {% if cert.issuer %}— {{ cert.issuer }}{% endif %} ({{ cert.year }})</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="watermark">AI RESUME BUILDER - Version gratuite</div>
+</body>
+</html>

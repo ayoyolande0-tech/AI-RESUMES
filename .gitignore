@@ -1,0 +1,10 @@
+# Clés JWT → NE JAMAIS COMMIT
+jwt-private.pem
+jwt-public.pem
+*.pem
+
+# Environnement virtuel
+venv/
+.env
+__pycache__/
+*.pyc
